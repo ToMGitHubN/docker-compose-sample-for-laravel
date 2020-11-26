@@ -54,8 +54,8 @@ services:
       /bin/sh -c "
       until (/usr/bin/mc config host add myminio http://minio:9000 minio_access_key minio_secret_key) do echo '...waiting...' && sleep 1; done;
       /usr/bin/mc mb myminio/local.5ge-and-6g-summit.com;
-      /usr/bin/mc policy set public myminio/local.5ge-and-6g-summit.com;
-      /usr/bin/mc policy download myminio/local.5ge-and-6g-summit.com;
+      /usr/bin/mc policy set public myminio/local.bucketname-hoge.com;
+      /usr/bin/mc policy download myminio/local.bucketname-hoge.com;
       exit 0;
       "
 
@@ -68,7 +68,7 @@ services:
       - web
     restart: always
     environment:
-      DOMAINS: 'public -> http://dockerhost:8080
+      DOMAINS: 'public -> http://dockerhost:8080'
       STAGE: local
     volumes:
       - ./org-chimata-ssl-certs:/var/lib/https-portal
